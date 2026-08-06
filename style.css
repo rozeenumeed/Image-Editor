@@ -1,142 +1,290 @@
+/* =========================
+   RESET
+========================= */
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html, body{
-    width: 100%;
-    height: 100%;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: var(--bg-primary-color);
+html,body{
+    width:100%;
+    height:100%;
+    font-family:system-ui, sans-serif;
+    background-color:var(--bg-primary-color);
+    color:var(--text-primary-color);
 }
-html{
-    color: var(--text-primary-color);
-}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
 main{
-    width: 100%;
+    width:100%;
+    
+    
 }
+
 main section{
     width:100%;
-    padding: var(--padding-xxl);
-    display: flex;
-    gap: var(--gutter-lg);
+    padding:var(--padding-xxl);
+
+    display:flex;
+    gap:var(--gutter-lg);
+
+    align-items:flex-start;
 }
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+main section .left{
+    width:70%;
+
+    display:flex;
+    flex-direction:column;
+    gap:var(--gutter-lg);
+}
+
+/* =========================
+   TOP BUTTONS
+========================= */
 
 main section .top{
     display:flex;
-    align-items: center;
     gap:var(--gutter-md);
-
+    flex-wrap:wrap;
 }
+
+/* =========================
+   COMMON BUTTON STYLE
+========================= */
+
 .btn{
-    padding: var(--padding-md) var(--padding-lg);
+    padding:var(--padding-md) var(--padding-lg);
+
     border:none;
     outline:none;
-    border-radius: var(--border-radius-md);
-    background-color: var(--bg-active-color);
-    font-size: var(--font-size-md);
+
+    border-radius:12px;
+
     cursor:pointer;
+
+    background-color:var(--bg-active-color);
     color:var(--text-active-color);
-}
-#reset-btn{
-    background-color: var(--bg-danger-color);
-    color: var(--text-primary-color);
-}
-#download-btn{
-    background-color: var(--bg-success-color);
-    color: var(--text-primary-color);
-}
-main  section .left{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    gap:var(--gutter-lg );
-    width:70%;
+
+    transition:0.25s ease;
 }
 
-main section .right{
- width:30%;
- background-color: var(--bg-secondary-color);
- padding:var(--gutter-lg);
- border-radius: var(--border-radius-lg);
- display:flex;
- flex-direction: column;
- gap:var(--gutter-lg);
- 
+.btn:hover{
+    transform:translateY(-2px);
 }
-main section .right .filter{
-    margin-top: var(--margin-sm);
-    font-size: var(--font-size-sm);
+
+/* Reset button */
+
+#reset-btn{
+    background-color:var(--bg-danger-color);
+    color:var(--text-primary-color);
 }
+
+/* Download button */
+
+#download-btn{
+    background-color:var(--bg-success-color);
+    color:var(--text-primary-color);
+}
+
+/* =========================
+   CANVAS CONTAINER
+========================= */
+
 main section .bottom{
     width:100%;
-    padding: var(--padding-xxl);
-    aspect-ratio: 5/3 ;
-    background-color: var(--bg-secondary-color); 
-    border-radius: var(--border-radius-xl);
+
+    aspect-ratio:4/2;
+
+    padding:var(--padding-xxl);
+
+    border-radius:var(--border-radius-xl);
+
+    background-color:var(--bg-secondary-color);
+
     display:flex;
-    justify-content: center;
-    align-items: center;
+    justify-content:center;
+    align-items:center;
+
+    border:2px dashed rgba(255,255,255,.15);
 }
 
-main section .bottom .placeholder{
+/* =========================
+   PLACEHOLDER
+========================= */
+
+.placeholder{
     display:flex;
-    flex-direction: column;
-    align-items: center;
-    opacity:0.6;
+    flex-direction:column;
+    align-items:center;
+
     gap:var(--gutter-md);
+
+    opacity:.6;
 }
 
-main section .bottom .placeholder i{
-    font-size:10rem;
+.placeholder i{
+    font-size:8rem;
 }
-main section .bottom .placeholder p{
-    font-size: var(--font-size-lg);
+
+.placeholder p{
+    font-size:var(--font-size-lg);
 }
+
+/* =========================
+   CANVAS
+========================= */
+
+canvas{
+    display:none;
+
+    max-width:100%;
+    max-height:80vh;
+}
+
+/* =========================
+   RIGHT PANEL
+========================= */
+
+main section .right{
+    width:30%;
+    
+
+    background-color:var(--bg-secondary-color);
+
+    padding:var(--gutter-lg);
+
+    border-radius:var(--border-radius-xxl);
+
+    display:flex;
+    flex-direction:column;
+
+    gap:var(--gutter-lg);
+    height:calc(100vh - 6rem);
+    overflow-y:auto;
+    position:sticky;
+    top:2rem;
+    
+}
+
+/* =========================
+   FILTER SECTION
+========================= */
 
 main section .right .filter{
-   width:100%;
-   display:flex;
-   flex-direction: column;
+    width:100%;
+
+    display:flex;
+    flex-direction:column;
+
     gap:var(--gutter-sm);
 }
-main section .right .filter input{
-    width:100%;
-    outline: none;
+
+main section .right .filter p{
+    font-size:14px;
 }
+
+/* =========================
+   RANGE INPUT
+========================= */
+
 main section .right .filter input[type="range"]{
     width:100%;
-    outline:none;
-    -webkit-appearance:none;
-    appearance:none;
+
     background:transparent;
+
+    appearance:none;
+    -webkit-appearance:none;
+
+    outline:none;
 }
+
+/* Track */
+
 main section .right .filter input[type="range"]::-webkit-slider-runnable-track{
-    height:4px;
-    background:gray;
-    border-radius:10px;
+    height:6px;
+
+    background:#555;
+
+    border-radius:999px;
 }
+
+/* Thumb */
+
 main section .right .filter input[type="range"]::-webkit-slider-thumb{
-    -webkit-appearance: none;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-top:-5px;
-    background-color: red;
+    -webkit-appearance:none;
+
+    width:12px;
+    height:12px;
+
+    border-radius:50%;
+
+    background-color:red;
+
+    cursor:pointer;
+
+    margin-top:-3px;
 }
-canvas{
-    max-width:90%;
-    max-height:80vh;
-    display:none;
-}
+
+/* =========================
+   PRESETS
+========================= */
+
 .presets{
     display:flex;
     flex-wrap:wrap;
-    gap:var(--gutter-md);
-    margin-top: var(--margin-md);
+
+    gap:10px;
 }
-presets h2{
-    font-size: var(--font-size-sm);
+
+/* Equal width preset buttons */
+
+.presets .btn{
+    flex:1 1 120px;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+.right h2{
+    font-size:1rem;
+    margin-bottom:.5rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    main section{
+        flex-direction:column;
+    }
+
+    main section .left{
+        width:100%;
+    }
+
+    main section .right{
+        width:100%;
+
+        height:auto;
+
+        max-height:none;
+
+        position:static;
+    }
+
+    canvas{
+        max-width:100%;
+    }
 }

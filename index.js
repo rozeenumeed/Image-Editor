@@ -121,7 +121,6 @@ img.onload=()=>{
 
  
 function applyFilters(){
-    if(!image) return;
     ctx.clearRect(0,0,imageCanvas.width,imageCanvas.height);
     ctx.filter=` 
     brightness(${filters.brightness.value}${filters.brightness.unit})
@@ -332,18 +331,21 @@ const presets = {
 };
 
 Object.keys(presets).forEach(presetName => {
-  const presetBtn=document.createElement("button");
-  presetBtn.classList.add("btn");
-  presetBtn.innerText=presetName;
-  presetContainer.append(presetBtn);
-});
 
-PresetBtn.addEventListener("click",()=>{
-    const preset=prests[presetName];
-    Object.keys(preset).forEach(filterName=>{
-        filters[filterName].value=preset[filterName];
+    const presetBtn = document.createElement("button");
+    presetBtn.classList.add("btn");
+    presetBtn.innerText = presetName;
+
+    presetBtn.addEventListener("click", () => {
+        const preset = presets[presetName];
+
+        Object.keys(preset).forEach(filterName => {
+            filters[filterName].value = preset[filterName];
+        });
+
+        applyFilters();
     });
-    applyFilters();
-    filterContainer.innerHTML="";
-    createFilter();
+
+    presetContainer.appendChild(presetBtn);
+
 });
